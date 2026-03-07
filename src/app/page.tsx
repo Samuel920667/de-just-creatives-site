@@ -5,8 +5,6 @@ import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { 
   ArrowRight, 
-  ChevronRight, 
-  ChevronLeft,
   User, 
   Rocket, 
   Store, 
