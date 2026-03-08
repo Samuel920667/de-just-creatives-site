@@ -1,24 +1,43 @@
-import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-import "./globals.css"; 
+import type { Metadata, Viewport } from "next";
+import { Playfair_Display, Inter } from "next/font/google";
+import "./globals.css";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer"; // <--- Import Footer
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop"; // Ensure you created this file from previous step
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans", weight: ["300", "400", "600"] });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-serif", weight: ["400", "700"] });
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: "De Just Creatives",
-  description: "Empowering Financial Growth and Building Lasting Wealth.",
+  title: "De-Just Creative Financials",
+  description: "Empowering smart investments and sustainable business growth.",
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
+// 🔴 THIS FIXES THE ZOOM ISSUE
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false, // Prevents accidental zoom-in on inputs
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en">
-      <body className={`${inter.variable} ${playfair.variable} font-sans bg-slate-50 text-slate-800`}>
+    <html lang="en" className="scroll-smooth">
+      {/*  overflow-x-hidden FIXES THE HORIZONTAL SCROLL BUG */}
+      <body 
+        className={`${inter.variable} ${playfair.variable} font-sans bg-white text-slate-800 antialiased overflow-x-hidden`}
+      >
+        <ScrollToTop />
         <Navbar />
-        {children}
-        <Footer /> {/* <--- Footer is now automatic on EVERY page */}
+        <main className="min-h-screen relative">
+          {children}
+        </main>
+        <Footer />
       </body>
     </html>
   );

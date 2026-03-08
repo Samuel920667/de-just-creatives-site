@@ -6,23 +6,21 @@ import {
   MapPin, 
   Mail, 
   Phone, 
-  X, 
   CheckCircle, 
   Loader2, 
   ChevronDown, 
-  AlertCircle,
-  Globe,
   Lock,
   ArrowRight,
   Briefcase,
-  Clock 
+  Clock,
+  Globe,
+  X 
 } from 'lucide-react';
 import { Playfair_Display, Inter } from 'next/font/google';
 
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
-// --- DATA ---
 const COUNTRY_CODES = [
   { code: "+234", country: "NG", flag: "🇳🇬" },
   { code: "+1",   country: "US", flag: "🇺🇸" },
@@ -46,12 +44,10 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [mounted, setMounted] = useState(false);
   
-  // Logic States
   const [isSessionLocked, setIsSessionLocked] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [statusText, setStatusText] = useState("");
 
-  // Form State
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -63,15 +59,13 @@ export default function ContactPage() {
   });
   const [errors, setErrors] = useState<{[key: string]: string}>({});
 
-  // --- 1. INITIALIZATION & LOCK CHECK ---
   useEffect(() => {
     setMounted(true);
     const lastSubmission = localStorage.getItem('djc_last_submission_time');
     if (lastSubmission) {
       const lastTime = parseInt(lastSubmission);
       const now = Date.now();
-      const hoursPassed = (now - lastTime) / (1000 * 60 * 60);
-      if (hoursPassed < 24) {
+      if ((now - lastTime) / (1000 * 60 * 60) < 24) {
         setIsSessionLocked(true);
         setIsSubmitted(true);
       } else {
@@ -80,27 +74,17 @@ export default function ContactPage() {
     }
   }, []);
 
-  // --- 2. BUSINESS HOURS LOGIC (Live Status Restored) ---
   useEffect(() => {
     if (!mounted) return;
-
     const checkStatus = () => {
       const now = new Date();
-      const options: Intl.DateTimeFormatOptions = { 
-        timeZone: 'Africa/Lagos', 
-        weekday: 'short', 
-        hour: 'numeric', 
-        minute: 'numeric',
-        hour12: false 
-      };
+      const options: Intl.DateTimeFormatOptions = { timeZone: 'Africa/Lagos', weekday: 'short', hour: 'numeric', hour12: false };
       const formatter = new Intl.DateTimeFormat('en-GB', options);
       const parts = formatter.formatToParts(now);
-      
       const day = parts.find(p => p.type === 'weekday')?.value; 
       const hour = parseInt(parts.find(p => p.type === 'hour')?.value || "0");
-
       const isWeekend = day === 'Sat' || day === 'Sun';
-      const isWorkHours = hour >= 9 && hour < 17; // 9:00 - 16:59
+      const isWorkHours = hour >= 9 && hour < 17;
 
       if (!isWeekend && isWorkHours) {
         setIsOpen(true);
@@ -110,13 +94,11 @@ export default function ContactPage() {
         setStatusText("Closed");
       }
     };
-
     checkStatus();
-    const interval = setInterval(checkStatus, 60000); // Check every minute
+    const interval = setInterval(checkStatus, 60000);
     return () => clearInterval(interval);
   }, [mounted]);
 
-  // --- 3. HANDLERS ---
   const validate = () => {
     const newErrors: {[key: string]: string} = {};
     if (!formData.fullName.trim()) newErrors.fullName = "Name is required.";
@@ -140,7 +122,6 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     const finalSubject = formData.service === "Other" ? formData.customSubject : formData.service;
-    
     const payload = { ...formData, subject: finalSubject };
 
     try {
@@ -169,40 +150,44 @@ export default function ContactPage() {
   if (!mounted) return null;
 
   return (
-    <div className={`${playfair.variable} ${inter.variable} min-h-screen font-sans bg-[#e6e6e6] text-slate-800 relative`}>
+    <div className={`${playfair.variable} ${inter.variable} min-h-screen font-sans bg-[#f4f4f4] text-slate-800`}>
       
-      {/* --- FIXED BACKGROUND HEIGHT (Increased to 550px to contain text) --- */}
-      <div className="absolute top-0 left-0 w-full h-[550px] bg-[#1a1a1a] z-0 shadow-md" />
+      {/* HEADER SECTION */}
+      <section className="relative h-[400px] bg-black flex items-center justify-center">
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
+          style={{ backgroundImage: "url('/hero-2.jpg')" }} 
+        />
+        <div className="absolute inset-0 bg-black/60 z-10" />
 
-      {/* --- CONTENT CONTAINER (Adjusted padding) --- */}
-      <div className="pt-36 pb-10 px-4 relative z-10 max-w-6xl mx-auto">
+        {/* 🔴 SIMPLIFIED X BUTTON (NO BORDER, NO ANIMATION) */}
+        <Link 
+          href="/" 
+          className="absolute top-28 right-6 md:top-32 md:right-12 z-40 text-white hover:text-[#C6A87C] transition-colors"
+          aria-label="Return to Home"
+        >
+          <X className="w-8 h-8" />
+        </Link>
         
-        {/* --- PAGE HEADER --- */}
-        <div className="flex justify-between items-start mb-16 text-white">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-serif text-[#C6A87C] mb-4">Contact Us</h1>
-            <p className="text-gray-300 text-lg font-light max-w-xl leading-relaxed border-l-4 border-[#C6A87C] pl-4">
-              Connect with our team for strategic financial advice and business growth solutions.
-            </p>
-          </div>
-          <Link 
-            href="/" 
-            className="p-2 text-slate-400 hover:text-white transition bg-white/10 hover:bg-[#C6A87C] rounded-full"
-          >
-             <X className="w-6 h-6" />
-          </Link>
+        <div className="relative z-20 text-center px-6 mt-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+          <h1 className="text-4xl md:text-6xl font-serif text-white font-bold mb-4 tracking-tight">Contact Us</h1>
+          <div className="h-1 w-24 bg-[#C6A87C] mx-auto mb-6" />
+          <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light leading-relaxed">
+             Connect with our team for strategic financial advice and business growth solutions.
+          </p>
         </div>
+      </section>
 
-        {/* --- MAIN GRID --- */}
-        <div className="grid lg:grid-cols-12 gap-8 items-start">
+      {/* MAIN CONTENT SECTION */}
+      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24 -mt-10 relative z-30">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          {/* === LEFT COLUMN: INFO & ADDRESSES (Span 5) === */}
+          {/* LEFT COLUMN */}
           <div className="lg:col-span-5 space-y-6">
-            
-            {/* 1. LOCATIONS CARD (Integrated Live Status) */}
-            <div className="bg-white rounded shadow-sm border border-gray-100 overflow-hidden">
+            <div className="bg-white rounded shadow-xl border-t-4 border-[#C6A87C] overflow-hidden">
                <div className="p-6 border-b border-gray-100">
-                  <h3 className="text-slate-800 font-serif font-bold text-lg">Our Offices</h3>
+                  <h3 className="text-slate-800 font-serif font-bold text-xl">Our Offices</h3>
                </div>
                
                {/* Nigeria */}
@@ -235,7 +220,7 @@ export default function ContactPage() {
                   </a>
                </div>
 
-               {/* Integrated Business Hours with Live Status */}
+               {/* Business Hours */}
                <div className="p-6 bg-slate-50 border-t border-gray-100">
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-3 text-slate-600">
@@ -249,24 +234,21 @@ export default function ContactPage() {
                </div>
             </div>
 
-            {/* 2. EMAIL */}
-            <div className="bg-[#C6A87C] text-white p-6 rounded shadow-lg flex items-center justify-between hover:bg-[#b08d55] transition cursor-pointer">
+            <div className="bg-[#1a1a1a] text-white p-6 rounded shadow-lg flex items-center justify-between hover:bg-[#C6A87C] transition cursor-pointer group">
                <div className="flex items-center gap-3">
-                  <Mail className="w-6 h-6" />
+                  <Mail className="w-6 h-6 group-hover:scale-110 transition" />
                   <div>
-                    <p className="text-xs font-bold uppercase opacity-80">Email Us</p>
+                    <p className="text-xs font-bold uppercase opacity-60">Email Us</p>
                     <p className="font-serif text-lg">info@dejustcreative.com</p>
                   </div>
                </div>
                <ArrowRight className="w-5 h-5" />
             </div>
-
           </div>
 
-          {/* === RIGHT COLUMN: FORM (Span 7) === */}
-          <div className="lg:col-span-7">
-             <div className="bg-white rounded shadow-xl border border-[#C6A87C] p-8 md:p-10 relative">
-                
+          {/* RIGHT COLUMN (Form) */}
+          <div id="consultation-form" className="lg:col-span-7 scroll-mt-32">
+             <div className="bg-white rounded shadow-2xl p-8 md:p-10 relative">
                 {isSessionLocked ? (
                   <div className="text-center py-16 animate-in zoom-in">
                     <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -276,7 +258,7 @@ export default function ContactPage() {
                       {isSubmitted ? "Message Received" : "Submission Limit"}
                     </h2>
                     <p className="text-slate-600 text-lg mb-8 max-w-md mx-auto leading-relaxed">
-                      Our team has received your message and will get back to you as soon as possible. In the meantime, you can make further enquiries through our offices.
+                      Our team has received your message.
                     </p>
                     <Link href="/" className="inline-block bg-[#1a1a1a] text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#C6A87C] transition">
                       Return to Home
@@ -288,19 +270,11 @@ export default function ContactPage() {
                     
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <input 
-                          type="text" name="fullName" placeholder="Full Name" 
-                          value={formData.fullName} onChange={handleChange}
-                          className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.fullName ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} 
-                        />
+                        <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.fullName ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
                         {errors.fullName && <span className="text-xs text-red-500 mt-1 block">{errors.fullName}</span>}
                       </div>
                       <div>
-                        <input 
-                          type="email" name="email" placeholder="Email Address" 
-                          value={formData.email} onChange={handleChange}
-                          className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.email ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} 
-                        />
+                        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.email ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
                         {errors.email && <span className="text-xs text-red-500 mt-1 block">{errors.email}</span>}
                       </div>
                     </div>
@@ -308,37 +282,21 @@ export default function ContactPage() {
                     <div>
                       <div className={`flex w-full border rounded text-sm transition focus-within:ring-1 focus-within:ring-[#C6A87C] focus-within:border-[#C6A87C] ${errors.phone ? 'border-red-500 ring-red-500' : 'border-gray-200'}`}>
                         <div className="relative border-r border-gray-200 bg-gray-50">
-                          <select 
-                            name="phoneCode" value={formData.phoneCode} onChange={handleChange}
-                            className="h-full pl-3 pr-8 bg-transparent appearance-none outline-none cursor-pointer font-medium text-slate-700 w-[90px]"
-                          >
-                            {COUNTRY_CODES.map((item) => (
-                              <option key={item.code} value={item.code}>{item.flag} {item.code}</option>
-                            ))}
+                          <select name="phoneCode" value={formData.phoneCode} onChange={handleChange} className="h-full pl-3 pr-8 bg-transparent appearance-none outline-none cursor-pointer font-medium text-slate-700 w-[90px]">
+                            {COUNTRY_CODES.map((item) => (<option key={item.code} value={item.code}>{item.flag} {item.code}</option>))}
                           </select>
                           <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                         </div>
-                        <input 
-                          type="tel" name="phone" placeholder="Phone Number" 
-                          value={formData.phone} onChange={handleChange}
-                          className="flex-1 p-4 outline-none bg-transparent"
-                        />
+                        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="flex-1 p-4 outline-none bg-transparent" />
                       </div>
                       {errors.phone && <span className="text-xs text-red-500 mt-1 block">{errors.phone}</span>}
                     </div>
 
                     <div>
                       <div className="relative">
-                        <select 
-                          name="service" 
-                          value={formData.service} 
-                          onChange={handleChange}
-                          className={`w-full p-4 border rounded text-sm appearance-none outline-none focus:ring-1 transition cursor-pointer bg-white ${errors.service ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}
-                        >
+                        <select name="service" value={formData.service} onChange={handleChange} className={`w-full p-4 border rounded text-sm appearance-none outline-none focus:ring-1 transition cursor-pointer bg-white ${errors.service ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}>
                           <option value="" disabled>Select Consultation Topic</option>
-                          {SERVICES.map(service => (
-                            <option key={service} value={service}>{service}</option>
-                          ))}
+                          {SERVICES.map(service => (<option key={service} value={service}>{service}</option>))}
                         </select>
                         <Briefcase className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                       </div>
@@ -347,29 +305,18 @@ export default function ContactPage() {
 
                     {formData.service === "Other" && (
                       <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                        <input 
-                          type="text" name="customSubject" placeholder="Please specify your request" 
-                          value={formData.customSubject} onChange={handleChange}
-                          className={`w-full p-4 border rounded text-sm focus:outline-none focus:border-[#C6A87C] focus:ring-1 focus:ring-[#C6A87C] transition ${errors.customSubject ? 'border-red-500' : 'border-gray-200'}`} 
-                        />
+                        <input type="text" name="customSubject" placeholder="Please specify your request" value={formData.customSubject} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:border-[#C6A87C] focus:ring-1 focus:ring-[#C6A87C] transition ${errors.customSubject ? 'border-red-500' : 'border-gray-200'}`} />
                         {errors.customSubject && <span className="text-xs text-red-500 mt-1 block">{errors.customSubject}</span>}
                       </div>
                     )}
 
                     <div>
-                      <textarea 
-                        rows={5} name="message" placeholder="How can we help you?" 
-                        value={formData.message} onChange={handleChange}
-                        className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition resize-none ${errors.message ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}
-                      ></textarea>
+                      <textarea rows={5} name="message" placeholder="How can we help you?" value={formData.message} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition resize-none ${errors.message ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}></textarea>
                       {errors.message && <span className="text-xs text-red-500 mt-1 block">{errors.message}</span>}
                     </div>
 
                     <div className="pt-2">
-                      <button 
-                        type="submit" disabled={isSubmitting}
-                        className="w-full bg-[#B59458] hover:bg-[#967946] text-white py-4 rounded text-lg font-bold shadow-md transition duration-300 font-serif flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
-                      >
+                      <button type="submit" disabled={isSubmitting} className="w-full bg-[#B59458] hover:bg-[#967946] text-white py-4 rounded text-lg font-bold shadow-md transition duration-300 font-serif flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
                         {isSubmitting ? <><Loader2 className="w-5 h-5 animate-spin" /> Sending...</> : "Submit Inquiry"}
                       </button>
                     </div>
@@ -377,9 +324,8 @@ export default function ContactPage() {
                 )}
              </div>
           </div>
-
         </div>
-      </div>
+      </section>
     </div>
   );
 }

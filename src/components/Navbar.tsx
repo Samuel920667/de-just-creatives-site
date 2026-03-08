@@ -1,123 +1,118 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react"; // Reverted back to 'Menu' (3 lines)
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Playfair_Display, Inter } from 'next/font/google';
 
-// Setup Fonts to ensure consistency
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-serif' });
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Lock body scroll when menu is open so user can't scroll background
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [isOpen]);
+
   return (
-    <header className={`${playfair.variable} ${inter.variable} fixed top-0 left-0 w-full z-50 p-6 font-sans border-b border-black bg-black/60 backdrop-blur-md shadow-lg transition-all duration-300`}>
-      <div className="max-w-7xl mx-auto flex justify-between items-center relative">
-        
-        {/* --- Logo Section --- */}
-        <Link href="/" className="text-white z-50 flex items-center gap-4">
-          {/* Space for Image Logo */}
-          <div className="relative w-10 h-10 md:w-12 md:h-12">
-             <img 
-               src="/logo-dejustcreatives-removebg-preview.png" 
-               alt="Logo" 
-               className="object-contain w-full h-full" 
-             />
-          </div>
+    <>
+      <header className={`${playfair.variable} ${inter.variable} fixed top-0 left-0 w-full z-[60] py-4 px-4 md:py-5 md:px-8 font-sans border-b border-white/10 bg-black/80 backdrop-blur-md shadow-lg transition-all duration-300`}>
+        <div className="max-w-7xl mx-auto flex justify-between items-center relative">
           
-          {/* Text Logo */}
-          <h1 className="text-xl md:text-2xl font-bold font-serif tracking-widest uppercase shadow-black drop-shadow-md leading-tight">
-            De-Just Creative <br className="md:hidden"/> Financials
-          </h1>
-        </Link>
-
-        {/* --- Right Side Controls --- */}
-        <div className="flex items-center gap-6 z-[60]">
-          {/* Desktop 'Book Consultation' */}
-          <Link 
-            href="/contact"
-            className="hidden md:flex px-6 py-3 border border-[#B59458] text-white text-xs font-bold uppercase tracking-widest rounded-sm transition-all duration-300 hover:bg-[#B59458] hover:text-white hover:-translate-y-1 shadow-lg bg-black/20 backdrop-blur-sm"
-          >
-            Book Consultation
+          {/* --- 1. LOGO SECTION --- */}
+          <Link href="/" className="text-white z-[70] flex items-center gap-3">
+            {/* Logo Image */}
+            <div className="relative w-8 h-8 md:w-12 md:h-12 flex-shrink-0">
+               <img 
+                 src="/logo-dejustcreatives-removebg-preview.png" 
+                 alt="Logo" 
+                 className="object-contain w-full h-full" 
+               />
+            </div>
+            {/* Logo Text */}
+            <h1 className="text-[10px] sm:text-xs md:text-xl font-bold font-serif tracking-widest uppercase shadow-black drop-shadow-md whitespace-nowrap">
+              De-Just Creative Financials
+            </h1>
           </Link>
-          
-          {/* Hamburger Menu Toggle */}
-          <button 
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 transition duration-300 focus:outline-none"
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? (
-              /* SHOW ONLY X WHEN OPEN */
-              <X className="w-8 h-8 md:w-10 md:h-10 text-[#B59458] animate-in spin-in-90 duration-300" />
-            ) : (
-              /* SHOW 3-LINE MENU (Hamburger) WHEN CLOSED */
-              <Menu className="w-8 h-8 md:w-10 md:h-10 text-white hover:text-[#B59458] drop-shadow-md transition-colors" />
-            )}
-          </button>
+
+          {/* --- 2. CONTROLS --- */}
+          <div className="flex items-center gap-6 z-[70]">
+            
+            {/* Desktop 'Book Consultation' (Hidden on Mobile) */}
+            <Link 
+              href="/contact#consultation-form" 
+              className="hidden md:flex px-6 py-3 border border-[#B59458] text-white text-xs font-bold uppercase tracking-widest rounded-sm transition-all duration-300 hover:bg-[#B59458] hover:text-white hover:-translate-y-1 shadow-lg bg-black/20"
+            >
+              Book Consultation
+            </Link>
+            
+            {/* --- 3. MENU TOGGLE BUTTON --- */}
+            <button 
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-1 text-white hover:text-[#B59458] transition focus:outline-none flex items-center justify-center group"
+            >
+               {/* Custom Animated Icon */}
+               <div className="w-8 h-8 flex flex-col justify-center items-end gap-1.5">
+                  <span className={`h-[2px] bg-current transition-all duration-300 ${isOpen ? 'w-8 rotate-45 translate-y-2' : 'w-8'}`} />
+                  <span className={`h-[2px] bg-current transition-all duration-300 ${isOpen ? 'w-0 opacity-0' : 'w-5 group-hover:w-8'}`} />
+                  <span className={`h-[2px] bg-current transition-all duration-300 ${isOpen ? 'w-8 -rotate-45 -translate-y-2' : 'w-3 group-hover:w-8'}`} />
+               </div>
+            </button>
+          </div>
         </div>
+      </header>
 
-        {/* --- Pop-up Menu Dropdown --- */}
-        <div 
-          className={`
-            absolute top-full right-0 mt-4 w-72 
-            bg-[#1a1a1a] border border-[#B59458]/30 shadow-2xl 
-            flex flex-col py-6 px-2 rounded-sm 
-            transform transition-all duration-300 origin-top-right 
-            ${isOpen ? 'scale-100 opacity-100 visible translate-y-0' : 'scale-95 opacity-0 invisible -translate-y-2'}
-          `}
-        >
-          <nav className="flex flex-col space-y-2">
+      {/* --- 4. FULL SCREEN GLASS MENU OVERLAY --- */}
+      <div 
+        className={`
+          fixed inset-0 z-[50] 
+          bg-black/80 backdrop-blur-xl
+          flex flex-col justify-center items-center
+          transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
+          ${isOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'}
+        `}
+      >
+        <nav className="flex flex-col space-y-8 text-center">
+          {[
+            { name: "Home", href: "/" },
+            { name: "Who We Are", href: "/#who-we-are" },
+            { name: "Insights", href: "/#insights" },
+            { name: "Contact Us", href: "/contact" },
+          ].map((link, idx) => (
             <Link 
-              href="/" 
+              key={link.name}
+              href={link.href} 
               onClick={() => setIsOpen(false)} 
-              className="group flex items-center justify-between px-6 py-3 hover:bg-white/5 transition-colors"
+              className={`
+                text-3xl md:text-5xl font-serif text-white hover:text-[#B59458] 
+                transition-all duration-500 transform
+                ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}
+              `}
+              style={{ transitionDelay: `${idx * 100}ms` }}
             >
-              <span className="text-lg font-serif text-white group-hover:text-[#B59458] transition-colors">Home</span>
+              {link.name}
             </Link>
+          ))}
 
-            {/* WHO WE ARE - Scrolls to Section */}
+          {/* Mobile Only CTA Button inside Menu */}
+          <div 
+             className={`md:hidden pt-8 transition-all duration-700 delay-500 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+          >
             <Link 
-              href="/#who-we-are" 
-              onClick={() => setIsOpen(false)} 
-              className="group flex items-center justify-between px-6 py-3 hover:bg-white/5 transition-colors"
-            >
-              <span className="text-lg font-serif text-white group-hover:text-[#B59458] transition-colors">Who We Are</span>
-            </Link>
-
-            {/* INSIGHTS - Scrolls to Section */}
-            <Link 
-              href="/#insights" 
-              onClick={() => setIsOpen(false)} 
-              className="group flex items-center justify-between px-6 py-3 hover:bg-white/5 transition-colors"
-            >
-              <span className="text-lg font-serif text-white group-hover:text-[#B59458] transition-colors">Insights</span>
-            </Link>
-
-            <Link 
-              href="/contact" 
-              onClick={() => setIsOpen(false)} 
-              className="group flex w-full items-center justify-between px-6 py-3 hover:bg-white/5 transition-colors text-left"
-            >
-              <span className="text-lg font-serif text-white group-hover:text-[#B59458] transition-colors">Contact</span>
-            </Link>
-          </nav>
-
-          {/* Mobile-Only CTA Button */}
-          <div className="md:hidden px-6 pt-6 mt-4 border-t border-white/10">
-            <Link 
-              href="/contact"
+              href="/contact#consultation-form"
               onClick={() => setIsOpen(false)}
-              className="block w-full text-center py-3 bg-[#B59458] text-white text-xs font-bold uppercase tracking-widest hover:bg-[#967946] transition"
+              className="px-8 py-4 border border-[#B59458] text-[#B59458] hover:bg-[#B59458] hover:text-white text-sm font-bold uppercase tracking-widest transition-all duration-300"
             >
               Book Consultation
             </Link>
           </div>
-        </div>
-
+        </nav>
       </div>
-    </header>
+    </>
   );
 }
