@@ -35,10 +35,10 @@ export default function Navbar() {
                />
             </div>
             
-            {/* Logo Text - (Preserved your specific formatting) */}
+            {/* Logo Text */}
             <div className="flex flex-col justify-center">
               <h1 className="text-[10px] sm:text-xs md:text-xl font-bold font-serif tracking-widest uppercase shadow-black drop-shadow-md whitespace-nowrap leading-tight">
-                DE - JUST KЯEATIV FINANCIALS
+                DE - JUST CREATIVE FINANCIAL
               </h1>
             </div>
           </Link>
@@ -76,7 +76,6 @@ export default function Navbar() {
           fixed inset-0 z-[50] 
           bg-black/80 backdrop-blur-xl
           flex flex-col items-center
-          /* 👇 CHANGED: justify-start + pt-32 pushes content DOWN below the header 👇 */
           justify-start pt-32 md:pt-40 overflow-y-auto
           transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
           ${isOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'}
@@ -86,7 +85,8 @@ export default function Navbar() {
           {[
             { name: "Home", href: "/" },
             { name: "Who We Are", href: "/#who-we-are" },
-            { name: "What We Offer", href: "/#expertise" },
+            { name: "What We Offer", href: "/#expertise" },      // Points to Services Section
+            { name: "Who We Work For", href: "/#who-we-work-for" }, // Points to Client Section
             { name: "Insights", href: "/#insights" },
             { name: "Contact Us", href: "/contact" },
           ].map((link, idx) => (

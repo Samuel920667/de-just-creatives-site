@@ -160,7 +160,7 @@ export default function ContactPage() {
         />
         <div className="absolute inset-0 bg-black/60 z-10" />
 
-        {/* X BUTTON (CLOSE) - Simple, No Border/Animation */}
+        {/* X BUTTON (CLOSE) */}
         <Link 
           href="/" 
           className="absolute top-28 right-6 md:top-32 md:right-12 z-40 text-white hover:text-[#C6A87C] transition-colors"
@@ -183,8 +183,10 @@ export default function ContactPage() {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
-          {/* LEFT COLUMN */}
+          {/* LEFT COLUMN: Offices + Map + Email */}
           <div className="lg:col-span-5 space-y-6 w-full">
+            
+            {/* 1. Office Info Card */}
             <div className="bg-white rounded shadow-xl border-t-4 border-[#C6A87C] overflow-hidden">
                <div className="p-5 md:p-6 border-b border-gray-100">
                   <h3 className="text-slate-800 font-serif font-bold text-xl">Our Offices</h3>
@@ -195,13 +197,15 @@ export default function ContactPage() {
                   <div className="flex items-center gap-3 mb-2">
                      <MapPin className="w-5 h-5 text-[#C6A87C]" />
                      <span className="font-bold text-slate-800">Lagos, Nigeria</span>
-                     <span className="text-[10px] bg-slate-100 text-slate-600 px-2 py-0.5 rounded uppercase font-bold">HQ</span>
                   </div>
                   <p className="text-sm text-slate-600 pl-8 leading-relaxed mb-3">
                     8 Akintola Crescent,<br/> Along Ikorodu Road.
                   </p>
-                  <a href="tel:+2348069010564" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition">
-                    <Phone className="w-3 h-3" /> +234 806 901 0564
+                  <a href="tel:+2349112810287" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition">
+                    <Phone className="w-3 h-3" /> +234 911 281 0287
+                  </a>
+                  <a href="tel:+2349066346710" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition mt-1">
+                    <Phone className="w-3 h-3" /> +234 906 634 6710
                   </a>
                </div>
 
@@ -234,7 +238,21 @@ export default function ContactPage() {
                </div>
             </div>
 
-            {/* 🔴 UPDATED EMAIL CARD: Changed div to a href="mailto:..." */}
+            {/* 2. LIVE GOOGLE MAP (Moved here for better layout balance) */}
+            <div className="w-full h-[300px] bg-gray-200 rounded shadow-lg overflow-hidden border-2 border-white ring-1 ring-gray-100">
+               <iframe 
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.4357778505584!2d3.361958274046522!3d6.592618922359487!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b926a8bd86071%3A0xc39f82d1c65d6c5d!2s8%20Akintola%20Cres%2C%20Ikeja%20101233%2C%20Lagos!5e0!3m2!1sen!2sng!4v1715000000000!5m2!1sen!2sng" 
+                 width="100%" 
+                 height="100%" 
+                 style={{border:0}} 
+                 allowFullScreen={true} 
+                 loading="lazy" 
+                 referrerPolicy="no-referrer-when-downgrade"
+                 title="De-Just Creative Office Location"
+               ></iframe>
+            </div>
+
+            {/* 3. EMAIL CARD */}
             <a 
               href="mailto:info@dejustcreative.com"
               className="bg-[#1a1a1a] text-white p-5 md:p-6 rounded shadow-lg flex items-center justify-between hover:bg-[#C6A87C] transition cursor-pointer group"
@@ -250,8 +268,9 @@ export default function ContactPage() {
             </a>
           </div>
 
-          {/* RIGHT COLUMN (Form) */}
-          <div id="consultation-form" className="lg:col-span-7 scroll-mt-32 w-full">
+          {/* RIGHT COLUMN: Just the Form */}
+          <div className="lg:col-span-7 w-full flex flex-col gap-8">
+            <div id="consultation-form" className="scroll-mt-32">
              <div className="bg-white rounded shadow-2xl p-5 md:p-10 relative">
                 {isSessionLocked ? (
                   <div className="text-center py-16 animate-in zoom-in">
@@ -261,8 +280,9 @@ export default function ContactPage() {
                     <h2 className="text-3xl font-serif text-[#C6A87C] mb-4">
                       {isSubmitted ? "Message Received" : "Submission Limit"}
                     </h2>
-                    <p className="text-slate-600 text-lg mb-8 max-w-md mx-auto leading-relaxed">
-                      Our team has received your message.
+                    <p className="text-slate-600 text-base mb-8 max-w-lg mx-auto leading-relaxed">
+                      Our team has received your message and will get back to you as soon as possible. <br className="hidden md:block" />
+                      For further inquiries, you can contact our offices.
                     </p>
                     <Link href="/" className="inline-block bg-[#1a1a1a] text-white px-8 py-3 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-[#C6A87C] transition">
                       Return to Home
@@ -327,6 +347,7 @@ export default function ContactPage() {
                   </form>
                 )}
              </div>
+            </div>
           </div>
         </div>
       </section>

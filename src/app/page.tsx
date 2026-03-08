@@ -60,7 +60,11 @@ const servicesList = [
 ];
 
 // 3. Slider Images
-const insightSlides = ["/hero-2.jpg", "/insight-2.jpeg", "/insight-3.jpeg"];
+const insightSlides = [
+  "https://images.pexels.com/photos/36086895/pexels-photo-36086895.jpeg?auto=compress&cs=tinysrgb&w=1600", 
+  "/insight-2.jpeg",  // keep this as is
+  "https://images.pexels.com/photos/28049938/pexels-photo-28049938.jpeg?auto=compress&cs=tinysrgb&w=1600"
+];
 
 export default function Home() {
   const [activeService, setActiveService] = useState<typeof servicesList[0] | null>(null);
@@ -142,7 +146,7 @@ export default function Home() {
         <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center pt-20">
           <div className="inline-block mb-6">
             <h1 className="text-5xl md:text-8xl font-bold text-white font-serif tracking-tighter drop-shadow-2xl">
-              DE-JUST <span className="text-gray-200">KREATIV</span>
+              DE-JUST <span className="text-gray-200">KЯEATIV </span>
             </h1>
             <div className="h-[2px] w-full bg-gradient-to-r from-[#C6A87C] via-[#C6A87C]/50 to-transparent mt-2" />
           </div>
@@ -161,7 +165,7 @@ export default function Home() {
             <div className="bg-[#545454] text-white p-10 md:p-16 md:w-[48%] z-10 shadow-2xl md:-mr-20">
               <h2 className="text-4xl font-serif mb-8 border-l-2 border-[#C6A87C] pl-4">Who We Are</h2>
               <p className="text-sm leading-8 text-gray-300 mb-10 font-light">
-                De Just Creatives is a financial advisory and business development firm dedicated to helping individuals and businesses make informed financial decisions. We advise clients on smart investment strategies, effective wealth management, and practical approaches to developing and growing sustainable businesses.
+                De-Just Creative is a financial advisory and business development firm dedicated to helping individuals and businesses make informed financial decisions. We advise clients on smart investment strategies, effective wealth management, and practical approaches to developing and growing sustainable businesses.
               </p>
               
               <div className="space-y-4 font-serif text-lg">
@@ -178,8 +182,13 @@ export default function Home() {
             </div>
             
             {/* Right: Office Image */}
-            <div className="w-full md:w-[62%] min-h-[500px] bg-cover bg-center rounded-sm shadow-lg mt-8 md:mt-0"
-     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=2070&auto=format&fit=crop')"}}>   
+            <div
+  className="w-full md:w-[62%] min-h-[500px] bg-cover bg-center rounded-sm shadow-lg mt-8 md:mt-0"
+  style={{
+    backgroundImage:
+      "url('https://images.pexels.com/photos/30689114/pexels-photo-30689114.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+  }}
+>
 </div>
           </div>
         </div>
@@ -320,7 +329,7 @@ export default function Home() {
               <h2 className="text-3xl font-serif font-bold">Our Vision</h2>
             </div>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              To stand as the premier Financial and Media Organization in Africa and by extension the world, driving global economic growth through innovation and integrity.
+              We aim to be the premier financial and media organization in Africa and, by extension, the world, driving global economic growth through innovation and integrity.
             </p>
           </div>
 
@@ -333,7 +342,7 @@ export default function Home() {
               <h2 className="text-3xl font-serif font-bold">Our Mission</h2>
             </div>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              Helping SMEs and business owners across the globe to maximize their full potential through Kreative Financial education to help upscale their value chain, positioning them for dominance in the modern business world.
+              We help SMEs and business owners worldwide maximize their full potential through Kreative Financial education, enhancing their value chain and positioning them for success in the modern business world.
             </p>
           </div>
 

@@ -14,7 +14,7 @@ import {
   Globe,
   Instagram,
   Linkedin,
-  Twitter // Using Twitter icon for X as standard fallback
+  Twitter 
 } from "lucide-react";
 import { Playfair_Display, Inter } from 'next/font/google';
 
@@ -157,17 +157,17 @@ export default function Footer() {
           
           {/* Column 1: Brand, Socials & Contact Info */}
           <div className="md:pr-8">
-            <h3 className="text-[#C6A87C] font-serif text-2xl mb-4 font-bold tracking-wider">DE-JUST CREATIVE</h3>
+            <h3 className="text-[#C6A87C] font-serif text-2xl mb-4 font-bold tracking-wider">DE-JUST KЯEATIV</h3>
             <p className="text-xs text-gray-400 mb-6 leading-relaxed font-light">
               Empowering smart investments <br /> and sustainable business growth.
             </p>
 
-            {/* --- SOCIAL ICONS (Blended) --- */}
+            {/* --- SOCIAL ICONS (UPDATED LINKS) --- */}
             <div className="flex gap-3 mb-8">
-               <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#C6A87C] hover:text-white text-gray-400 transition-all duration-300 group shadow-md border border-white/5 hover:border-[#C6A87C]">
+               <a href="https://www.instagram.com/dejust_creative_financials?igsh=azB1NGY3azV4aDEw" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#C6A87C] hover:text-white text-gray-400 transition-all duration-300 group shadow-md border border-white/5 hover:border-[#C6A87C]">
                   <Instagram className="w-4 h-4" />
                </a>
-               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#C6A87C] hover:text-white text-gray-400 transition-all duration-300 group shadow-md border border-white/5 hover:border-[#C6A87C]">
+               <a href="https://www.linkedin.com/company/dejust-creative-media-finance/" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#C6A87C] hover:text-white text-gray-400 transition-all duration-300 group shadow-md border border-white/5 hover:border-[#C6A87C]">
                   <Linkedin className="w-4 h-4" />
                </a>
                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-full hover:bg-[#C6A87C] hover:text-white text-gray-400 transition-all duration-300 group shadow-md border border-white/5 hover:border-[#C6A87C]">
@@ -177,28 +177,33 @@ export default function Footer() {
 
             <div className="space-y-6 text-xs text-gray-400 font-light">
                
-               {/* Nigeria Office (Full Address + Phone) */}
+               {/* Nigeria Office (UPDATED: Removed "Head Office", Added 2 Numbers) */}
                <div className="group">
                  <div className="flex items-start gap-3 mb-2">
                     <MapPin className="w-4 h-4 text-[#C6A87C] mt-1 flex-shrink-0 group-hover:scale-110 transition" /> 
                     <div>
-                        <span className="block text-[#C6A87C] font-bold mb-1">Nigeria (Head Office)</span>
+                        <span className="block text-[#C6A87C] font-bold mb-1">Nigeria</span>
                         <span className="block leading-relaxed">8 Akintola Crescent,<br/> Along Ikorodu Road, Lagos.</span>
                     </div>
                  </div>
-                 <a href="tel:+2349066346710" className="flex items-center gap-3 pl-7 hover:text-[#C6A87C] transition">
-                   <Phone className="w-3 h-3 text-[#C6A87C]" /> 
-                   <span>+234 9066346710</span>
-                 </a>
+                 <div className="pl-7 space-y-1">
+                   <a href="tel:09112810287" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
+                     <Phone className="w-3 h-3 text-[#C6A87C]" /> 
+                     <span>09112810287</span>
+                   </a>
+                   <a href="tel:09066346710" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
+                     <Phone className="w-3 h-3 text-[#C6A87C]" /> 
+                     <span>09066346710</span>
+                   </a>
+                 </div>
                </div>
 
-               {/* UK Office (Short Address + Phone) */}
+               {/* UK Office */}
                <div className="group">
                  <div className="flex items-start gap-3 mb-2">
                     <Globe className="w-4 h-4 text-[#C6A87C] mt-1 flex-shrink-0 group-hover:scale-110 transition" /> 
                     <div>
                         <span className="block text-[#C6A87C] font-bold mb-1">United Kingdom (Diaspora)</span>
-                        {/* ADDED UK ADDRESS BELOW */}
                         <span className="block leading-relaxed">41 Warwick Gardens,<br/> Worthing, BN11 1PF.</span>
                     </div>
                  </div>
@@ -232,7 +237,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 3: Quick Links */}
+          {/* Column 3: Quick Links (UPDATED) */}
           <div>
              <h4 className="text-white font-serif text-lg mb-6">Quick Links</h4>
              <ul className="space-y-4 text-xs text-[#C6A87C] font-light">
@@ -243,6 +248,14 @@ export default function Footer() {
                <li className="group flex items-center gap-2">
                   <span className="w-1 h-1 bg-[#C6A87C] rounded-full"></span>
                   <Link href="/#who-we-are" className="hover:text-white transition hover:translate-x-1 duration-300">Who We Are</Link>
+               </li>
+               <li className="group flex items-center gap-2">
+                  <span className="w-1 h-1 bg-[#C6A87C] rounded-full"></span>
+                  <Link href="/#expertise" className="hover:text-white transition hover:translate-x-1 duration-300">What We Offer</Link>
+               </li>
+               <li className="group flex items-center gap-2">
+                  <span className="w-1 h-1 bg-[#C6A87C] rounded-full"></span>
+                  <Link href="/#who-we-work-for" className="hover:text-white transition hover:translate-x-1 duration-300">Who We Work For</Link>
                </li>
                <li className="group flex items-center gap-2">
                   <span className="w-1 h-1 bg-[#C6A87C] rounded-full"></span>
@@ -297,7 +310,7 @@ export default function Footer() {
              </div>
              <p className="text-xs md:text-sm text-slate-600 leading-relaxed max-w-3xl">
                We use cookies and monitor user activity to ensure <strong>security</strong> and improve your experience. 
-               In compliance with the <strong>Nigeria Data Protection Regulation (NDPR)</strong>, your personal data (including contact forms and CV uploads) is <strong><u>encrypted and safe-kept</u></strong>. 
+               In compliance with the <strong>Nigeria Data Protection Regulation (NDPR)</strong>, your personal data (including contact forms and CV uploads) is <strong>encrypted and safe-kept</strong>. 
                By continuing, you agree to our 
                <button onClick={() => setActiveModal('privacy')} className="text-[#C6A87C] font-bold hover:underline mx-1">Privacy Policy</button> 
                and 
