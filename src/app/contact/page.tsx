@@ -150,17 +150,17 @@ export default function ContactPage() {
   if (!mounted) return null;
 
   return (
-    <div className={`${playfair.variable} ${inter.variable} min-h-screen font-sans bg-[#f4f4f4] text-slate-800`}>
+    <div className={`${playfair.variable} ${inter.variable} min-h-screen font-sans bg-[#f4f4f4] text-slate-800 overflow-x-hidden w-full`}>
       
       {/* HEADER SECTION */}
-      <section className="relative h-[400px] bg-black flex items-center justify-center">
+      <section className="relative h-[400px] bg-black flex items-center justify-center w-full">
         <div 
           className="absolute inset-0 z-0 bg-cover bg-center opacity-60"
           style={{ backgroundImage: "url('/hero-2.jpg')" }} 
         />
         <div className="absolute inset-0 bg-black/60 z-10" />
 
-        {/* 🔴 SIMPLIFIED X BUTTON (NO BORDER, NO ANIMATION) */}
+        {/* X BUTTON (CLOSE) - Simple, No Border/Animation */}
         <Link 
           href="/" 
           className="absolute top-28 right-6 md:top-32 md:right-12 z-40 text-white hover:text-[#C6A87C] transition-colors"
@@ -169,7 +169,7 @@ export default function ContactPage() {
           <X className="w-8 h-8" />
         </Link>
         
-        <div className="relative z-20 text-center px-6 mt-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <div className="relative z-20 text-center px-4 md:px-6 mt-16 animate-in fade-in slide-in-from-bottom-4 duration-700">
           <h1 className="text-4xl md:text-6xl font-serif text-white font-bold mb-4 tracking-tight">Contact Us</h1>
           <div className="h-1 w-24 bg-[#C6A87C] mx-auto mb-6" />
           <p className="text-gray-300 text-lg max-w-2xl mx-auto font-light leading-relaxed">
@@ -179,19 +179,19 @@ export default function ContactPage() {
       </section>
 
       {/* MAIN CONTENT SECTION */}
-      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24 -mt-10 relative z-30">
+      <section className="max-w-7xl mx-auto px-4 md:px-6 py-16 md:py-24 -mt-10 relative z-30">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
 
           {/* LEFT COLUMN */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6 w-full">
             <div className="bg-white rounded shadow-xl border-t-4 border-[#C6A87C] overflow-hidden">
-               <div className="p-6 border-b border-gray-100">
+               <div className="p-5 md:p-6 border-b border-gray-100">
                   <h3 className="text-slate-800 font-serif font-bold text-xl">Our Offices</h3>
                </div>
                
                {/* Nigeria */}
-               <div className="p-6 border-b border-gray-100 hover:bg-slate-50 transition group">
+               <div className="p-5 md:p-6 border-b border-gray-100 hover:bg-slate-50 transition group">
                   <div className="flex items-center gap-3 mb-2">
                      <MapPin className="w-5 h-5 text-[#C6A87C]" />
                      <span className="font-bold text-slate-800">Lagos, Nigeria</span>
@@ -206,7 +206,7 @@ export default function ContactPage() {
                </div>
 
                {/* UK */}
-               <div className="p-6 hover:bg-slate-50 transition group">
+               <div className="p-5 md:p-6 hover:bg-slate-50 transition group">
                   <div className="flex items-center gap-3 mb-2">
                      <Globe className="w-5 h-5 text-[#C6A87C]" />
                      <span className="font-bold text-slate-800">Worthing, UK</span>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                </div>
 
                {/* Business Hours */}
-               <div className="p-6 bg-slate-50 border-t border-gray-100">
+               <div className="p-5 md:p-6 bg-slate-50 border-t border-gray-100">
                   <div className="flex items-center justify-between">
                      <div className="flex items-center gap-3 text-slate-600">
                         <Clock className="w-5 h-5 text-[#C6A87C]" />
@@ -234,7 +234,11 @@ export default function ContactPage() {
                </div>
             </div>
 
-            <div className="bg-[#1a1a1a] text-white p-6 rounded shadow-lg flex items-center justify-between hover:bg-[#C6A87C] transition cursor-pointer group">
+            {/* 🔴 UPDATED EMAIL CARD: Changed div to a href="mailto:..." */}
+            <a 
+              href="mailto:info@dejustcreative.com"
+              className="bg-[#1a1a1a] text-white p-5 md:p-6 rounded shadow-lg flex items-center justify-between hover:bg-[#C6A87C] transition cursor-pointer group"
+            >
                <div className="flex items-center gap-3">
                   <Mail className="w-6 h-6 group-hover:scale-110 transition" />
                   <div>
@@ -243,12 +247,12 @@ export default function ContactPage() {
                   </div>
                </div>
                <ArrowRight className="w-5 h-5" />
-            </div>
+            </a>
           </div>
 
           {/* RIGHT COLUMN (Form) */}
-          <div id="consultation-form" className="lg:col-span-7 scroll-mt-32">
-             <div className="bg-white rounded shadow-2xl p-8 md:p-10 relative">
+          <div id="consultation-form" className="lg:col-span-7 scroll-mt-32 w-full">
+             <div className="bg-white rounded shadow-2xl p-5 md:p-10 relative">
                 {isSessionLocked ? (
                   <div className="text-center py-16 animate-in zoom-in">
                     <div className="w-20 h-20 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -270,31 +274,31 @@ export default function ContactPage() {
                     
                     <div className="grid md:grid-cols-2 gap-6">
                       <div>
-                        <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.fullName ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
+                        <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className={`w-full p-3 md:p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.fullName ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
                         {errors.fullName && <span className="text-xs text-red-500 mt-1 block">{errors.fullName}</span>}
                       </div>
                       <div>
-                        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.email ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
+                        <input type="email" name="email" placeholder="Email Address" value={formData.email} onChange={handleChange} className={`w-full p-3 md:p-4 border rounded text-sm focus:outline-none focus:ring-1 transition ${errors.email ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`} />
                         {errors.email && <span className="text-xs text-red-500 mt-1 block">{errors.email}</span>}
                       </div>
                     </div>
 
                     <div>
                       <div className={`flex w-full border rounded text-sm transition focus-within:ring-1 focus-within:ring-[#C6A87C] focus-within:border-[#C6A87C] ${errors.phone ? 'border-red-500 ring-red-500' : 'border-gray-200'}`}>
-                        <div className="relative border-r border-gray-200 bg-gray-50">
-                          <select name="phoneCode" value={formData.phoneCode} onChange={handleChange} className="h-full pl-3 pr-8 bg-transparent appearance-none outline-none cursor-pointer font-medium text-slate-700 w-[90px]">
+                        <div className="relative border-r border-gray-200 bg-gray-50 flex-shrink-0">
+                          <select name="phoneCode" value={formData.phoneCode} onChange={handleChange} className="h-full pl-3 pr-8 bg-transparent appearance-none outline-none cursor-pointer font-medium text-slate-700 w-[85px] md:w-[90px]">
                             {COUNTRY_CODES.map((item) => (<option key={item.code} value={item.code}>{item.flag} {item.code}</option>))}
                           </select>
                           <ChevronDown className="absolute right-2 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
                         </div>
-                        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="flex-1 p-4 outline-none bg-transparent" />
+                        <input type="tel" name="phone" placeholder="Phone Number" value={formData.phone} onChange={handleChange} className="flex-1 p-3 md:p-4 outline-none bg-transparent min-w-0" />
                       </div>
                       {errors.phone && <span className="text-xs text-red-500 mt-1 block">{errors.phone}</span>}
                     </div>
 
                     <div>
                       <div className="relative">
-                        <select name="service" value={formData.service} onChange={handleChange} className={`w-full p-4 border rounded text-sm appearance-none outline-none focus:ring-1 transition cursor-pointer bg-white ${errors.service ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}>
+                        <select name="service" value={formData.service} onChange={handleChange} className={`w-full p-3 md:p-4 border rounded text-sm appearance-none outline-none focus:ring-1 transition cursor-pointer bg-white ${errors.service ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}>
                           <option value="" disabled>Select Consultation Topic</option>
                           {SERVICES.map(service => (<option key={service} value={service}>{service}</option>))}
                         </select>
@@ -305,13 +309,13 @@ export default function ContactPage() {
 
                     {formData.service === "Other" && (
                       <div className="animate-in fade-in slide-in-from-top-2 duration-300">
-                        <input type="text" name="customSubject" placeholder="Please specify your request" value={formData.customSubject} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:border-[#C6A87C] focus:ring-1 focus:ring-[#C6A87C] transition ${errors.customSubject ? 'border-red-500' : 'border-gray-200'}`} />
+                        <input type="text" name="customSubject" placeholder="Please specify your request" value={formData.customSubject} onChange={handleChange} className={`w-full p-3 md:p-4 border rounded text-sm focus:outline-none focus:border-[#C6A87C] focus:ring-1 focus:ring-[#C6A87C] transition ${errors.customSubject ? 'border-red-500' : 'border-gray-200'}`} />
                         {errors.customSubject && <span className="text-xs text-red-500 mt-1 block">{errors.customSubject}</span>}
                       </div>
                     )}
 
                     <div>
-                      <textarea rows={5} name="message" placeholder="How can we help you?" value={formData.message} onChange={handleChange} className={`w-full p-4 border rounded text-sm focus:outline-none focus:ring-1 transition resize-none ${errors.message ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}></textarea>
+                      <textarea rows={5} name="message" placeholder="How can we help you?" value={formData.message} onChange={handleChange} className={`w-full p-3 md:p-4 border rounded text-sm focus:outline-none focus:ring-1 transition resize-none ${errors.message ? 'border-red-500 ring-red-500' : 'border-gray-200 focus:border-[#C6A87C] focus:ring-[#C6A87C]'}`}></textarea>
                       {errors.message && <span className="text-xs text-red-500 mt-1 block">{errors.message}</span>}
                     </div>
 
