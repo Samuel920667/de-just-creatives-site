@@ -142,7 +142,7 @@ export default function Home() {
         <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center pt-20">
           <div className="inline-block mb-6">
             <h1 className="text-5xl md:text-8xl font-bold text-white font-serif tracking-tighter drop-shadow-2xl">
-              DE JUST <span className="text-gray-200">CREATIVES</span>
+              DE-JUST <span className="text-gray-200">KREATIV</span>
             </h1>
             <div className="h-[2px] w-full bg-gradient-to-r from-[#C6A87C] via-[#C6A87C]/50 to-transparent mt-2" />
           </div>
@@ -179,8 +179,8 @@ export default function Home() {
             
             {/* Right: Office Image */}
             <div className="w-full md:w-[62%] min-h-[500px] bg-cover bg-center rounded-sm shadow-lg mt-8 md:mt-0"
-                  style={{ backgroundImage: "url('/yadah.jpg')"}}>   
-            </div>
+     style={{ backgroundImage: "url('https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=2070&auto=format&fit=crop')"}}>   
+</div>
           </div>
         </div>
       </section>
