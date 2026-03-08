@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import Image from "next/image"; // IMPORT ADDED FOR IMAGE OPTIMIZATION
 import { 
   ArrowRight, 
   ChevronRight, 
@@ -112,7 +113,6 @@ export default function Home() {
       {/* --- POP-UP MODAL FOR SERVICES --- */}
       {activeService && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-          {/* UPDATED: 'border-4' applies to all sides now */}
           <div className="bg-white p-8 md:p-12 max-w-lg w-full rounded shadow-2xl relative animate-in zoom-in-95 duration-200 border-4 border-[#C6A87C]">
             <button 
               onClick={() => setActiveService(null)}
@@ -145,7 +145,8 @@ export default function Home() {
 
         <div className="relative z-20 h-full max-w-7xl mx-auto px-6 flex flex-col justify-center pt-20">
           <div className="inline-block mb-6">
-            <h1 className="text-5xl md:text-8xl font-bold text-white font-serif tracking-tighter drop-shadow-2xl">
+            {/* UPDATED: Added whitespace-nowrap and adjusted sizing for mobile straight line */}
+            <h1 className="text-3xl sm:text-5xl md:text-8xl font-bold text-white font-serif tracking-tighter drop-shadow-2xl whitespace-nowrap">
               DE-JUST <span className="text-gray-200">KЯEATIV </span>
             </h1>
             <div className="h-[2px] w-full bg-gradient-to-r from-[#C6A87C] via-[#C6A87C]/50 to-transparent mt-2" />
@@ -181,7 +182,7 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Right: Office Image */}
+            {/* Right: Office Image (RESTORED next/image for Quality/Optimization) */}
             <div
   className="w-full md:w-[62%] min-h-[500px] bg-cover bg-center rounded-sm shadow-lg mt-8 md:mt-0"
   style={{
@@ -190,6 +191,7 @@ export default function Home() {
   }}
 >
 </div>
+
           </div>
         </div>
       </section>
@@ -254,7 +256,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- WHO WE WORK WITH (ADDED ID FOR NAVIGATION) --- */}
+      {/* --- WHO WE WORK WITH --- */}
       <section id="who-we-work-for" className="py-24 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-serif text-slate-900 mb-2">Who We Work For</h2>
@@ -277,7 +279,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- INSIGHTS (NO CONTROLS - PURE AUTO FADE) --- */}
+      {/* --- INSIGHTS --- */}
       <section id="insights" className="max-w-7xl mx-auto md:py-24 py-12 px-6 md:px-0">
          <div className="flex flex-col md:flex-row shadow-2xl border border-gray-100">
            
@@ -300,9 +302,8 @@ export default function Home() {
               </ul>
            </div>
            
-           {/* Right: LARGE IMAGE FADER (No buttons, no dots) */}
+           {/* Right: LARGE IMAGE FADER */}
            <div className="md:w-1/2 relative bg-gray-900 min-h-[600px] overflow-hidden group">
-              {/* Stacked Images for Smooth Fade */}
               {insightSlides.map((img, idx) => (
                 <div 
                   key={idx}
