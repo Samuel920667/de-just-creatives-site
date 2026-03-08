@@ -198,6 +198,8 @@ export default function Footer() {
                     <Globe className="w-4 h-4 text-[#C6A87C] mt-1 flex-shrink-0 group-hover:scale-110 transition" /> 
                     <div>
                         <span className="block text-[#C6A87C] font-bold mb-1">United Kingdom (Diaspora)</span>
+                        {/* ADDED UK ADDRESS BELOW */}
+                        <span className="block leading-relaxed">41 Warwick Gardens,<br/> Worthing, BN11 1PF.</span>
                     </div>
                  </div>
                  <a href="tel:+447474350779" className="flex items-center gap-3 pl-7 hover:text-[#C6A87C] transition">

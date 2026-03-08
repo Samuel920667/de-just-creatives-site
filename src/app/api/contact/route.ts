@@ -62,7 +62,7 @@ export async function POST(req: Request) {
             </div>
 
             <div style="margin-top: 30px; font-size: 12px; color: #999; text-align: center;">
-              <p>&copy; 2026 De-Just Kreativ Automated System</p>
+              <p>&copy; 2026 De-Just Creative Automated System</p>
             </div>
           </div>
         </div>
