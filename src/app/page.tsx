@@ -166,7 +166,7 @@ export default function Home() {
               
               <div className="space-y-4 font-serif text-lg">
                 <div onClick={() => document.getElementById('expertise')?.scrollIntoView({behavior: 'smooth'})} className="group flex justify-between items-center border-b border-gray-400 pb-3 cursor-pointer hover:border-[#C6A87C] transition">
-                    <span className="group-hover:text-[#C6A87C] transition">Our Services</span>
+                    <span className="group-hover:text-[#C6A87C] transition">What We Offer</span>
                     <ArrowRight className="w-5 h-5 group-hover:text-[#C6A87C] transition" />
                 </div>
 
@@ -179,7 +179,7 @@ export default function Home() {
             
             {/* Right: Office Image */}
             <div className="w-full md:w-[62%] min-h-[500px] bg-cover bg-center rounded-sm shadow-lg mt-8 md:mt-0"
-                 style={{ backgroundImage: "url('/yadah.jpg')"}}>   
+                  style={{ backgroundImage: "url('/yadah.jpg')"}}>   
             </div>
           </div>
         </div>
@@ -189,10 +189,10 @@ export default function Home() {
       <section className="py-24 bg-slate-50 border-y border-slate-200" id="expertise">
         <div className="max-w-7xl mx-auto px-6">
           <div className="mb-8 flex justify-between items-end">
-             <div>
-               <h2 className="text-4xl font-serif text-slate-900 mb-2 border-l-4 border-[#C6A87C] pl-6">Our Services</h2>
-               <p className="text-slate-500 pl-7 text-sm">Professional solutions for your growth.</p>
-             </div>
+              <div>
+                <h2 className="text-4xl font-serif text-slate-900 mb-2 border-l-4 border-[#C6A87C] pl-6">What We Offer</h2>
+                <p className="text-slate-500 pl-7 text-sm">Professional solutions for your growth.</p>
+              </div>
           </div>
 
           {/* SCROLL CONTAINER */}
@@ -284,8 +284,8 @@ export default function Home() {
                   'Build sustainable wealth.'
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-4">
-                     <Asterisk className="w-6 h-6 text-[#C6A87C] flex-shrink-0 mt-1" />
-                     <span className="text-xl font-medium text-white tracking-wide">{item}</span>
+                      <Asterisk className="w-6 h-6 text-[#C6A87C] flex-shrink-0 mt-1" />
+                      <span className="text-xl font-medium text-white tracking-wide">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -326,7 +326,7 @@ export default function Home() {
 
           {/* Mission */}
           <div className="bg-[#2a2a2a] p-10 rounded-sm border-l-4 border-[#C6A87C] shadow-xl hover:-translate-y-2 transition duration-500">
-             <div className="flex items-center gap-4 mb-6">
+              <div className="flex items-center gap-4 mb-6">
               <div className="p-3 bg-[#C6A87C]/10 rounded-full">
                  <Compass className="w-8 h-8 text-[#C6A87C]" />
               </div>

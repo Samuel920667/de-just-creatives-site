@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
-  // Lock body scroll when menu is open so user can't scroll background
+  // Lock body scroll when menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -34,10 +34,13 @@ export default function Navbar() {
                  className="object-contain w-full h-full" 
                />
             </div>
-            {/* Logo Text */}
-            <h1 className="text-[10px] sm:text-xs md:text-xl font-bold font-serif tracking-widest uppercase shadow-black drop-shadow-md whitespace-nowrap">
-              De-Just Creative Financials
-            </h1>
+            
+            {/* Logo Text - (Preserved your specific formatting) */}
+            <div className="flex flex-col justify-center">
+              <h1 className="text-[10px] sm:text-xs md:text-xl font-bold font-serif tracking-widest uppercase shadow-black drop-shadow-md whitespace-nowrap leading-tight">
+                DE - JUST KЯEATIV FINANCIALS
+              </h1>
+            </div>
           </Link>
 
           {/* --- 2. CONTROLS --- */}
@@ -72,15 +75,18 @@ export default function Navbar() {
         className={`
           fixed inset-0 z-[50] 
           bg-black/80 backdrop-blur-xl
-          flex flex-col justify-center items-center
+          flex flex-col items-center
+          /* 👇 CHANGED: justify-start + pt-32 pushes content DOWN below the header 👇 */
+          justify-start pt-32 md:pt-40 overflow-y-auto
           transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]
           ${isOpen ? 'opacity-100 visible scale-100' : 'opacity-0 invisible scale-95 pointer-events-none'}
         `}
       >
-        <nav className="flex flex-col space-y-8 text-center">
+        <nav className="flex flex-col space-y-6 md:space-y-8 text-center pb-10">
           {[
             { name: "Home", href: "/" },
             { name: "Who We Are", href: "/#who-we-are" },
+            { name: "What We Offer", href: "/#expertise" },
             { name: "Insights", href: "/#insights" },
             { name: "Contact Us", href: "/contact" },
           ].map((link, idx) => (
