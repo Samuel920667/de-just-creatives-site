@@ -343,7 +343,7 @@ export default function Home() {
               <h2 className="text-3xl font-serif font-bold">Our Mission</h2>
             </div>
             <p className="text-gray-300 leading-relaxed text-lg font-light">
-              We help SMEs and business owners worldwide maximize their full potential through Kreative Financial education, enhancing their value chain and positioning them for success in the modern business world.
+              We help SMEs and business owners worldwide maximize their full potential through creative financial education, enhancing their value chain and positioning them for success in the modern business world.
             </p>
           </div>
 
