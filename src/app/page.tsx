@@ -254,8 +254,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- WHO WE WORK WITH --- */}
-      <section className="py-24 bg-white">
+      {/* --- WHO WE WORK WITH (ADDED ID FOR NAVIGATION) --- */}
+      <section id="who-we-work-for" className="py-24 bg-white scroll-mt-20">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-serif text-slate-900 mb-2">Who We Work For</h2>
           <p className="text-[#C6A87C] font-serif italic mb-16 text-lg">How We Help</p>
