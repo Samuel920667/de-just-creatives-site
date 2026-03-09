@@ -62,9 +62,9 @@ const servicesList = [
 
 // 3. Slider Images
 const insightSlides = [
-  "https://images.pexels.com/photos/36086895/pexels-photo-36086895.jpeg?auto=compress&cs=tinysrgb&w=1600", 
+  "https://cdna.artstation.com/p/assets/images/images/044/306/184/large/samuel-shittu-ikoyievee-png2.jpg?1639629260", 
   "/insight-2.jpeg",  // keep this as is
-  "https://images.pexels.com/photos/28049938/pexels-photo-28049938.jpeg?auto=compress&cs=tinysrgb&w=1600"
+  "/shoemaker-performs-shoes-studio-craft-grinder-machine_187712-4.avif"
 ];
 
 export default function Home() {
