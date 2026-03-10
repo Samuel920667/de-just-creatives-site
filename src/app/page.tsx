@@ -284,23 +284,32 @@ export default function Home() {
          <div className="flex flex-col md:flex-row shadow-2xl border border-gray-100">
            
            {/* Left: Text */}
-           <div className="bg-[#545454] text-white p-12 md:p-16 md:w-1/2 flex flex-col justify-center min-h-[600px]">
-              <h2 className="text-5xl font-serif mb-3 font-bold">Insights</h2>
-              <p className="text-[#C6A87C] mb-12 font-serif italic text-2xl">Learn, Grow & Succeed</p>
-              
-              <ul className="space-y-8">
-                {[
-                  'Learn how to invest wisely.', 
-                  'Understand business finances.', 
-                  'Build sustainable wealth.'
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-4">
-                      <Asterisk className="w-6 h-6 text-[#C6A87C] flex-shrink-0 mt-1" />
-                      <span className="text-xl font-medium text-white tracking-wide">{item}</span>
-                  </li>
-                ))}
-              </ul>
-           </div>
+           <div className="bg-[#545454] text-white p-8 md:p-16 md:w-1/2 flex flex-col justify-center min-h-[500px] md:min-h-[600px]">
+   <h2 className="text-4xl md:text-5xl font-serif mb-3 font-bold">Insights</h2>
+   
+   {/* 👇 FIXED: Added whitespace-nowrap and smaller mobile text size (text-lg md:text-2xl) */}
+   <p className="text-[#C6A87C] mb-10 md:mb-12 font-serif italic text-lg md:text-2xl whitespace-nowrap">
+     Learn, Grow & Succeed
+   </p>
+   
+   <ul className="space-y-6 md:space-y-8">
+     {[
+       'Learn how to invest wisely.', 
+       'Understand business finances.', 
+       'Build sustainable wealth.'
+     ].map((item) => (
+       <li key={item} className="flex items-center md:items-start gap-3 md:gap-4">
+           {/* Adjusted icon size slightly for mobile */}
+           <Asterisk className="w-5 h-5 md:w-6 md:h-6 text-[#C6A87C] flex-shrink-0" />
+           
+           {/* 👇 FIXED: Added whitespace-nowrap and smaller mobile text size (text-base md:text-xl) */}
+           <span className="text-base md:text-xl font-medium text-white tracking-wide whitespace-nowrap">
+             {item}
+           </span>
+       </li>
+     ))}
+   </ul>
+</div>
            
            {/* Right: LARGE IMAGE FADER */}
            <div className="w-full md:w-1/2 relative bg-gray-900 min-h-[350px] sm:min-h-[400px] md:min-h-[600px] overflow-hidden group">
