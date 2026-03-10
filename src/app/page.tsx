@@ -62,7 +62,7 @@ const servicesList = [
 
 // 3. Slider Images
 const insightSlides = [
-  "https://cdna.artstation.com/p/assets/images/images/044/306/184/large/samuel-shittu-ikoyievee-png2.jpg?1639629260", 
+  "https://static.wixstatic.com/media/b3c26e_73b5d70c82b74ccda12e62990207fbab~mv2.webp", 
   "/insight-2.jpeg",  // keep this as is
   "/shoemaker-performs-shoes-studio-craft-grinder-machine_187712-4.avif"
 ];
@@ -303,16 +303,19 @@ export default function Home() {
            </div>
            
            {/* Right: LARGE IMAGE FADER */}
-           <div className="md:w-1/2 relative bg-gray-900 min-h-[600px] overflow-hidden group">
-              {insightSlides.map((img, idx) => (
-                <div 
-                  key={idx}
-                  className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out
-                    ${idx === currentInsightSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-                  style={{ backgroundImage: `url('${img}')` }}
-                />
-              ))}
-           </div>
+           <div className="w-full md:w-1/2 relative bg-gray-900 min-h-[350px] sm:min-h-[400px] md:min-h-[600px] overflow-hidden group">
+  {insightSlides.map((img, idx) => (
+    <div 
+      key={idx}
+      className={`absolute inset-0 bg-cover bg-no-repeat transition-opacity duration-1000 ease-in-out
+        ${idx === currentInsightSlide ? 'opacity-100 z-10' : 'opacity-0 z-0'}
+        /* If it is the shoemaker image (index 2), focus on the left or right if needed. Otherwise, center it. */
+        ${idx === 2 ? 'bg-center md:bg-center' : 'bg-center'}
+      `}
+      style={{ backgroundImage: `url('${img}')` }}
+    />
+  ))}
+</div>
 
          </div>
       </section>
