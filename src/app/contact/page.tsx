@@ -204,8 +204,8 @@ export default function ContactPage() {
                   <a href="tel:+2349112810287" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition">
                     <Phone className="w-3 h-3" /> +234 911 281 0287
                   </a>
-                  <a href="tel:+2349066346710" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition mt-1">
-                    <Phone className="w-3 h-3" /> +234 906 634 6710
+                  <a href="tel:+2347088798551" className="text-sm font-bold text-slate-700 hover:text-[#C6A87C] pl-8 flex items-center gap-2 transition mt-1">
+                    <Phone className="w-3 h-3" /> +234 708 879 8551
                   </a>
                </div>
 

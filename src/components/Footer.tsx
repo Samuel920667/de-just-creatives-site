@@ -187,13 +187,13 @@ export default function Footer() {
                     </div>
                  </div>
                  <div className="pl-7 space-y-1">
-                   <a href="tel:09112810287" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
+                   <a href="tel:+2349112810287" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
                      <Phone className="w-3 h-3 text-[#C6A87C]" /> 
-                     <span>09112810287</span>
+                     <span>+234 911 281 0287</span>
                    </a>
-                   <a href="tel:09066346710" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
+                   <a href="tel:+2347088798551" className="flex items-center gap-3 hover:text-[#C6A87C] transition">
                      <Phone className="w-3 h-3 text-[#C6A87C]" /> 
-                     <span>09066346710</span>
+                     <span>+234 708 879 8551</span>
                    </a>
                  </div>
                </div>
