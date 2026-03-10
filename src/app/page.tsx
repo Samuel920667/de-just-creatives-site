@@ -284,25 +284,21 @@ export default function Home() {
          <div className="flex flex-col md:flex-row shadow-2xl border border-gray-100">
            
            {/* Left: Text */}
-           <div className="bg-[#545454] text-white p-8 md:p-16 md:w-1/2 flex flex-col justify-center min-h-[500px] md:min-h-[600px]">
+          <div className="bg-[#545454] text-white p-8 md:p-16 md:w-1/2 flex flex-col justify-center items-center text-center md:items-start md:text-left min-h-[500px] md:min-h-[600px]">
    <h2 className="text-4xl md:text-5xl font-serif mb-3 font-bold">Insights</h2>
    
-   {/* 👇 FIXED: Added whitespace-nowrap and smaller mobile text size (text-lg md:text-2xl) */}
    <p className="text-[#C6A87C] mb-10 md:mb-12 font-serif italic text-lg md:text-2xl whitespace-nowrap">
      Learn, Grow & Succeed
    </p>
    
-   <ul className="space-y-6 md:space-y-8">
+   <ul className="space-y-6 md:space-y-8 w-full flex flex-col items-center md:items-start">
      {[
        'Learn how to invest wisely.', 
        'Understand business finances.', 
        'Build sustainable wealth.'
      ].map((item) => (
-       <li key={item} className="flex items-center md:items-start gap-3 md:gap-4">
-           {/* Adjusted icon size slightly for mobile */}
+       <li key={item} className="flex items-center justify-center md:justify-start gap-3 md:gap-4 w-full">
            <Asterisk className="w-5 h-5 md:w-6 md:h-6 text-[#C6A87C] flex-shrink-0" />
-           
-           {/* 👇 FIXED: Added whitespace-nowrap and smaller mobile text size (text-base md:text-xl) */}
            <span className="text-base md:text-xl font-medium text-white tracking-wide whitespace-nowrap">
              {item}
            </span>
