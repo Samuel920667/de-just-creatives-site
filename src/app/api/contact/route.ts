@@ -35,7 +35,7 @@ export async function POST(req: Request) {
           <div style="max-width: 600px; margin: 0 auto; background-color: #ffffff; padding: 20px; border-top: 4px solid #C6A87C; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
             
             <h2 style="color: #1a1a1a; margin-top: 0;">New Website Inquiry</h2>
-            <p style="color: #666; font-size: 14px;">You have received a new message from the <strong>De-Just Kreativ</strong> website contact form.</p>
+            <p style="color: #666; font-size: 14px;">You have received a new message from the <strong>De-Just Creative Financials</strong> website contact form.</p>
             
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
               <tr>
@@ -62,7 +62,7 @@ export async function POST(req: Request) {
             </div>
 
             <div style="margin-top: 30px; font-size: 12px; color: #999; text-align: center;">
-              <p>&copy; 2026 De-Just Creative Automated System</p>
+              <p>&copy; 2026 De-Just Creative Financials Automated System</p>
             </div>
           </div>
         </div>
